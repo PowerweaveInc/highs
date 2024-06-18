@@ -4,7 +4,7 @@ This is a Haskell library that helps create and solve linear programs using the 
 
 ## Example
 
-The following simple example is a translation [from Wikipedia](https://en.wikipedia.org/wiki/Linear_programming#Example):
+Here is a simple example:
 
 ```haskell
 import qualified Data.Map.Strict as Map
