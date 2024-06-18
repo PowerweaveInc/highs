@@ -1,0 +1,6 @@
+[submodule "HiGHS"]
+	path = HiGHS
+	url = https://github.com/ERGO-Code/HiGHS
+	# HiGHS has a lot of branches; as of 2023-12-08,
+	# cloning the repository resulted in >130MB of data
+	shallow = true

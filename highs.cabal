@@ -1,0 +1,66 @@
+cabal-version:      3.4
+name:               highs
+version:            0.1.0.0
+synopsis:           Linear optimization library based on the HiGHS toolkit
+description:        Linear optimization library based on the HiGHS toolkit. It allows to define
+                    linear optimization programs, and solve them.
+                    This library provides a mechanism to create linear equations using arbitrary
+                    types as labels.
+homepage:           https://powerweave.io
+license:            MIT
+author:             Laurent P. René de Cotret
+maintainer:         laurent@powerweave.io
+copyright:          Powerweave
+category:           Math
+build-type:         Simple
+
+source-repository head
+  type:     git
+  location: https://github.com/PowerweaveInc/highs
+
+common warnings
+  ghc-options:         -Wall
+                       -Wcompat
+                       -Widentities
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wredundant-constraints
+                       -fhide-source-paths
+                       -Wmissing-export-lists
+                       -Wpartial-fields
+  default-language: GHC2021
+
+library
+    import:           warnings
+    exposed-modules:  Numeric.LinearProgramming
+                      Numeric.LinearProgramming.HiGHS
+                      Numeric.LinearProgramming.HiGHS.LowLevel
+                      Numeric.LinearProgramming.Program
+    build-depends:    base >=4.17 && <4.20
+                    , containers >= 0.6 && <0.8
+                    , foldl ^>=1.4
+                    , vector ^>=0.13
+    hs-source-dirs:   src
+    -- The library HiGHS can be installed using
+    -- install_highs.sh
+    extra-libraries:  highs
+    extra-lib-dirs:   /usr/local/lib
+    include-dirs:     /usr/local/include/highs
+
+
+test-suite linopt-test
+    import:           warnings
+    other-modules:    Test.Numeric.LinearProgramming
+                      Test.Numeric.LinearProgramming.HiGHS
+                      Test.Numeric.LinearProgramming.HiGHS.LowLevel
+                      Test.Numeric.LinearProgramming.Program
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:    base
+                    , hedgehog
+                    , highs
+                    , tasty
+                    , tasty-hunit
+                    , tasty-hedgehog
+                    , vector

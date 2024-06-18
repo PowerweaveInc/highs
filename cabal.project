@@ -1,0 +1,11 @@
+packages: highs.cabal
+
+jobs: $ncpus
+
+test-show-details: streaming
+tests: True
+
+-- Setting the Hackage index state allows
+-- better CI caching without constantly churning
+-- the cache.
+index-state: 2024-06-11T19:52:27Z
